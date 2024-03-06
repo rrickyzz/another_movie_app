@@ -24,7 +24,7 @@ class MovieTag extends StatelessWidget {
 }
 
 class MovieAnotherTag extends StatelessWidget {
-  final String title;
+  final String? title;
   const MovieAnotherTag({super.key, required this.title});
 
   @override
@@ -36,7 +36,7 @@ class MovieAnotherTag extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: Text(
-          title,
+          title ?? '',
           style: GoogleFonts.inter(
               color: Colours.lightGrey,
               fontSize: 12,
