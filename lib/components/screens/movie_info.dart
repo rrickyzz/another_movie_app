@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:another_movie_app/components/atoms/appbar_back_btn.dart';
+import 'package:another_movie_app/components/player/player.dart';
 import 'package:another_movie_app/components/atoms/tag.dart';
-import 'package:another_movie_app/components/molecules/appbar.dart';
+import 'package:another_movie_app/models/movies/movie_basic_info.dart';
 import 'package:another_movie_app/models/movies/movie_info.dart';
 import 'package:another_movie_app/styles/colours.dart';
 import 'package:another_movie_app/styles/dimensions.dart';
@@ -16,7 +15,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MovieInfoScreen extends StatelessWidget {
-  const MovieInfoScreen({super.key});
+  final MovieBasicInfo info;
+  const MovieInfoScreen({super.key, required this.info});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,14 @@ class MovieInfoScreen extends StatelessWidget {
                             width: 80,
                             height: 80,
                             child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (info.embedUrlImdb == null) {
+                                    return;
+                                  }
+                                  Get.to(const VidPlayerScreen(
+                                      url:
+                                          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'));
+                                },
                                 icon: const Icon(
                                   Icons.play_arrow_rounded,
                                   color: Colors.white,

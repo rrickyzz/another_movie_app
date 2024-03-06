@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:another_movie_app/components/screens/movie_info.dart';
 import 'package:another_movie_app/controllers/movie_controller.dart';
 import 'package:another_movie_app/models/movies/movie_basic_info.dart';
@@ -28,6 +30,7 @@ class Carousel extends StatelessWidget {
             return FutureBuilder(
               future: movieController.fetchMovieInfo(i.imdbID ?? ''),
               builder: (context, snapshot) {
+                inspect(i);
                 if (snapshot.data?.poster == null) {
                   return Center(
                     child: SizedBox(
@@ -41,7 +44,11 @@ class Carousel extends StatelessWidget {
                   tag: 'movie-info',
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(const MovieInfoScreen(), arguments: snapshot.data);
+                      Get.to(
+                          MovieInfoScreen(
+                            info: i,
+                          ),
+                          arguments: snapshot.data);
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),

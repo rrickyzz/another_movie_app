@@ -11,7 +11,7 @@ class MovieController extends GetxController {
   Future<LatestMovies?> fetchLatestMovies() async {
     var res = await movieService.getLatesMovies();
     latestMovies = LatestMovies.fromJson(res.body);
-    inspect(latestMovies);
+
     return latestMovies;
   }
 
